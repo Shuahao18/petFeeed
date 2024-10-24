@@ -19,6 +19,7 @@ import {
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons"; // Chevron Icon
+import chevronImage from "../assets/chevron.png";
 
 const WelcomeSection = ({ showWelcome }) => {
   return (
@@ -62,7 +63,14 @@ const ChevronButton = ({ toggleLoginForm, isVisible, chevronAnim }) => {
       ]}
     >
       <TouchableOpacity onPress={toggleLoginForm} style={styles.chevronButton}>
-        <AntDesign name={isVisible ? "down" : "up"} size={30} color="black" />
+      <Image
+          source={require("../assets/chevron.png")} // Update this path to your chevron image
+          style={{
+            width: 30, // Adjust width as necessary
+            height: 30, // Adjust height as necessary
+            transform: [{ rotate: isVisible ? "180deg" : "0deg" }], // Optional: rotate for visual effect
+          }}
+        />
       </TouchableOpacity>
     </Animated.View>
   );
@@ -85,8 +93,12 @@ const LoginForm = ({
     >
       <KeyboardAvoidingView behavior="padding" style={{ width: "100%" }}>
         <View style={styles.inputContainer}>
+        <Image
+            source={require("../assets/Track.png")}
+            style={styles.track}
+          />
           <Text style={styles.inputHeader}>Enter your account</Text>
-          <Text style={styles.emailLabel}>EMAIL</Text>
+          <Text style={styles.emailLabel}>USERNAME</Text>
           <TextInput
             value={email}
             onChangeText={(text) => setEmail(text)}
@@ -110,6 +122,7 @@ const LoginForm = ({
         </View>
       </KeyboardAvoidingView>
     </Animated.View>
+    
   );
 };
 
@@ -125,10 +138,9 @@ const LoginScreen = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        navigation.navigate("Beacon");
+        navigation.navigate("Login");
       }
     });
-
   }, []);
 
   // const registerHandler = () => {
@@ -153,13 +165,13 @@ const LoginScreen = () => {
   const toggleLoginForm = () => {
     const toValue = isVisible ? 800 : 0;
     const chevronToValue = isVisible ? 0 : -20; // Subtle movement
-  
+
     if (!isVisible) {
       setShowWelcome(true);
     } else {
       setShowWelcome(false);
     }
-  
+
     Animated.parallel([
       Animated.timing(slideAnim, {
         toValue,
@@ -175,7 +187,6 @@ const LoginScreen = () => {
       }),
     ]).start(() => setIsVisible(!isVisible));
   };
-  
 
   return (
     <ImageBackground
@@ -208,7 +219,11 @@ const LoginScreen = () => {
         setPassword={setPassword}
         loginHandler={loginHandler}
       />
+
+
     </ImageBackground>
+    
+      
   );
 };
 
@@ -223,28 +238,30 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   welcomeContainer: {
-    marginTop: "10%", // 10 pixels on top
+    marginTop: "5%", // 10 pixels on top
     marginRight: "20%",
+    fontFamily: "LazyDog",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    paddingHorizontal: 20, 
+    paddingHorizontal: 20,
   },
   header: {
-    font: "lazydog",
+    fontFamily: "lazydog",
     width: 280,
     gap: 5,
     fontSize: 24,
     fontWeight: "bold",
-    marginVertical: 5, 
+    marginVertical: 5,
     textAlign: "left",
-    color: "#111213", 
-    textShadowColor: "rgba(0, 0, 0, 0.5)", 
+    color: "#111213",
+    textShadowColor: "rgba(0, 0, 0, 0.5)",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 5,
     opacity: 100,
     margin: 10,
   },
   swipeContainer: {
+    width: "100%",
     color: "#111213",
     alignItems: "center",
     justifyContent: "center",
@@ -255,6 +272,7 @@ const styles = StyleSheet.create({
     color: "#111213",
     fontSize: 18,
     fontWeight: "600",
+    fontFamily: "LazyDog",
     margin: 5,
   },
   chevronContainer: {
@@ -284,12 +302,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "LazyDog",
     color: "fff",
-    margin: "10%",
+    margin: "8%",
     // marginRight: "70%"
   },
   inputContainer: {
     width: "100%",
-    height: "80%",
+    // height: "80%",
     alignItems: "center",
     color: "#D9D9D9",
   },
@@ -302,6 +320,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F5F5", // Light gray background
     color: "#333", // Dark color for input text
     borderColor: "#BDBDBD", // Border color
+  },
+  inputAcc: {
+    font: 12,
+    margin: 10,
+    fontFamily: "LazyDog",
   },
   buttonContainer: {
     width: "100%",
@@ -345,13 +368,12 @@ const styles = StyleSheet.create({
     top: 130,
     alignSelf: "center", // Centers horizontally
   },
-  
   emailLabel: {
     fontSize: 16,
     fontFamily: "LazyDog", // Apply LazyDog font
     color: "#000000",
     flex: "start",
-    marginRight: "79%",
+    marginRight: "70%",
   },
   passLabel: {
     fontSize: 16,
@@ -377,14 +399,21 @@ const styles = StyleSheet.create({
     paddingRight: 40, // Add padding to the right to avoid text overlap with the icon
     color: "#333",
   },
+  inputForgot:{
+    font: 12,
+    alignSelf: "flex-end",
+    margin: 5,
+    fontFamily: "LazyDog",
+    
+  },
   eyeIcon: {
     position: "absolute",
     right: 10, // Positioning to the right
     top: 12, // Center it vertically within the input
-  },
+  },  
   eyeImage: {
     width: 24,
     height: 24,
     resizeMode: "contain",
   },
-});
+});  

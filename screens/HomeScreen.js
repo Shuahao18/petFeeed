@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 
 const HomeScreen = () => {
   return (
-    <View style={styles.main}>
+    <ScrollView contentContainerStyle={styles.main}>
       <View style={styles.container}>
         <View style={styles.column}>
           <Image source={require("../assets/cart.png")} style={styles.image} />
@@ -75,7 +75,20 @@ const HomeScreen = () => {
           </View>
         </View>
       </View>
-    </View>
+
+      
+      <View style={styles.container}>
+        <View style={styles.column}>
+          <Image source={require("../assets/cart.png")} style={styles.image} />
+          <Image
+            source={require("../assets/burger.png")}
+            style={styles.image}
+          />
+        </View>
+        </View>
+
+
+        </ScrollView>
   );
 };
 
@@ -84,6 +97,8 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    minWidth: "0",
+    minHeight: "0",
     flexDirection: "column",
     backgroundColor: "#9a7e6f",
     justifyContent: "flex-start",
@@ -119,20 +134,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 1,
     padding: 15,
-    gap: "15%",
+    gap: "30%",
   },
   profile: {
-    width: 90,
-    height: 90,
+    width: 100,
+    height: 100,
     borderRadius: 20,
   },
   header: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#000",
+    fontFamily: "LazyDog",
+    marginLeft: 5,
+    alignSelf: "center",
+
   },
   mainBox: {
     width: "100%",
+    height: 171,
     flexDirection: "row",
     justifyContent: "space-around",
     backgroundColor: "#54473F",
@@ -140,6 +160,10 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     borderRadius: 10,
+    borderTopLeftRadius: 25, // Apply radius only to top-left
+    borderTopRightRadius: 25, // Apply radius only to top-right
+    borderBottomLeftRadius: 0, // No radius on bottom-left
+    borderBottomRightRadius: 0,
   },
   contentbox: {
     width: 96,
@@ -153,13 +177,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 2,
-    justifyContent: 'center', // Center vertically
-    alignItems: 'center', // Center horizontally
+    justifyContent: "center", // Center vertically
+    alignItems: "center", // Center horizontally
   },
   boxText: {
     color: "#000",
     fontSize: 16,
     textAlign: "center",
+    fontFamily: "LazyDog",
   },
   mainWrapper: {
     width: "100%",

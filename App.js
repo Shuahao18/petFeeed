@@ -12,23 +12,13 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Login"
-          component={LoginScreen}
-        />
+      <Stack.Navigator
+        screenOptions={{ headerShown: false }} // Apply globally
+      >
+        <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen 
-          name="About" 
-          component={AboutScreen} 
-          options={{ title: "About Us" }} 
-        />
-        <Stack.Screen 
-          name="Beacon" 
-          component={BeaconScreen} 
-          options={{ title: "Beacon Screen" }} 
-        />
+        <Stack.Screen name="About" component={AboutScreen} />
+        <Stack.Screen name="Beacon" component={BeaconScreen} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
