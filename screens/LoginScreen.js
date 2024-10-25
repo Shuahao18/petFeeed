@@ -1,28 +1,16 @@
-import {
-  ImageBackground,
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Image,
-  Animated,
-  Easing,
-} from "react-native";
-
+import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Animated, Easing, Image } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
-import { AntDesign } from "@expo/vector-icons"; // Chevron Icon
-import chevronImage from "../assets/chevron.png";
 
-const WelcomeSection = ({ showWelcome }) => {
-  return (
+const LoginScreen = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const navigation = useNavigation();
+  const slideAnim = useRef(new Animated.Value(0)).current;
+
+  const WelcomeSection = () => (
     <View style={styles.welcomeContainer}>
       {showWelcome && (
         <>
@@ -34,196 +22,85 @@ const WelcomeSection = ({ showWelcome }) => {
       )}
     </View>
   );
-};
 
-const SwipeSection = ({ isVisible }) => {
-  return (
-    !isVisible && (
-      <View style={styles.swipeContainer}>
-        <Text style={styles.swipeText}>SWIPE UP TO</Text>
-        <Text style={styles.swipeText}>LOGIN AND TO</Text>
-        <Text style={styles.swipeText}>KNOW MORE</Text>
-        <Text style={styles.swipeText}>ABOUT OUR</Text>
-        <Text style={styles.swipeText}>CUTESY SHOP</Text>
-      </View>
-    )
-  );
-};
-
-const ChevronButton = ({ toggleLoginForm, isVisible, chevronAnim }) => {
-  return (
+  const LoginForm = () => (
     <Animated.View
-      style={[
-        styles.chevronContainer,
-        {
-          position: "absolute",
-          bottom: 20,
-          transform: [{ translateY: chevronAnim }],
-        },
-      ]}
-    >
-      <TouchableOpacity onPress={toggleLoginForm} style={styles.chevronButton}>
-      <Image
-          source={require("../assets/chevron.png")} // Update this path to your chevron image
-          style={{
-            width: 30, // Adjust width as necessary
-            height: 30, // Adjust height as necessary
-            transform: [{ rotate: isVisible ? "180deg" : "0deg" }], // Optional: rotate for visual effect
-          }}
-        />
-      </TouchableOpacity>
-    </Animated.View>
-  );
-};
-
-const LoginForm = ({
-  slideAnim,
-  email,
-  setEmail,
-  password,
-  setPassword,
-  loginHandler,
-}) => {
-  return (
-    <Animated.View
-      style={[
-        styles.loginContainer,
-        { transform: [{ translateY: slideAnim }] },
-      ]}
+      style={[styles.loginContainer, { transform: [{ translateY: slideAnim }] }]}
     >
       <KeyboardAvoidingView behavior="padding" style={{ width: "100%" }}>
         <View style={styles.inputContainer}>
-        <Image
-            source={require("../assets/Track.png")}
-            style={styles.track}
+          <Image 
+            source={require("../assets/Track.png")} 
+            style={styles.start} 
           />
           <Text style={styles.inputHeader}>Enter your account</Text>
-          <Text style={styles.emailLabel}>USERNAME</Text>
-          <TextInput
-            value={email}
-            onChangeText={(text) => setEmail(text)}
-            style={styles.input}
-          />
-          <Text style={styles.passLabel}>PASSWORD</Text>
+        </View>
+
+        <Text style={styles.emailLabel}>USERNAME</Text>
+        <TextInput
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+          style={styles.input}
+        />
+        <Text style={styles.passLabel}>PASSWORD</Text>
+        <View style={styles.passwordContainer}>
           <TextInput
             value={password}
             onChangeText={(text) => setPassword(text)}
-            source={require("../assets/eye.jpg")}
             style={styles.input}
-            secureTextEntry
+            secureTextEntry={!showPassword}
           />
-          <Text style={styles.inputForgot}>Forgot the password?</Text>
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+            <Image
+              source={require("../assets/eye.jpg")}
+              style={styles.eyeIcon}
+            />
+          </TouchableOpacity>
         </View>
+        <Text style={styles.inputForgot}>Forgot the password?</Text>
+        
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={loginHandler} style={styles.button}>
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
-          <Text style={styles.inputAcc}>Don’t have an account? Sign Up. </Text>
+          <Text style={styles.inputAcc}>Don’t have an account? Sign Up.</Text>
         </View>
       </KeyboardAvoidingView>
     </Animated.View>
-    
   );
-};
-
-const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isVisible, setIsVisible] = useState(false); // Track visibility state
-  const [showWelcome, setShowWelcome] = useState(false); // Track welcome text visibility
-  const navigation = useNavigation();
-  const slideAnim = useRef(new Animated.Value(800)).current; // Start off-screen at the bottom
-  const chevronAnim = useRef(new Animated.Value(0)).current; // Chevron starting position
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigation.navigate("Login");
-      }
-    });
+    setShowWelcome(true);
+    Animated.timing(slideAnim, {
+      toValue: 0,
+      duration: 300,
+      easing: Easing.out(Easing.ease),
+      useNativeDriver: true,
+    }).start();
   }, []);
 
-  // const registerHandler = () => {
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then((userCredentials) => {
-  //       const user = userCredentials.user;
-  //       console.log("Registered Successfully:", user.email);
-  //     })
-  //     .catch((error) => alert(error.message));
-  // };
-
   const loginHandler = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log("Login Successfully:", user.email);
-        navigation.navigate("Dashboard");
-      })
-      .catch((error) => alert(error.message));
-  };
-
-  const toggleLoginForm = () => {
-    const toValue = isVisible ? 800 : 0;
-    const chevronToValue = isVisible ? 0 : -20; // Subtle movement
-
-    if (!isVisible) {
-      setShowWelcome(true);
-    } else {
-      setShowWelcome(false);
-    }
-
-    Animated.parallel([
-      Animated.timing(slideAnim, {
-        toValue,
-        duration: 300,
-        easing: Easing.out(Easing.ease),
-        useNativeDriver: true, // Better performance
-      }),
-      Animated.timing(chevronAnim, {
-        toValue: chevronToValue,
-        duration: 300,
-        easing: Easing.out(Easing.ease),
-        useNativeDriver: true, // Better performance
-      }),
-    ]).start(() => setIsVisible(!isVisible));
+    // Navigate directly to HomeScreen without validating credentials
+    navigation.navigate("Beacon"); 
   };
 
   return (
-    <ImageBackground
-      source={require("../assets/background.jpg")} // Update the path to your image
-      style={styles.screenContainer} // Use the same styles for the container
-    >
-      {/* Only show the logo when the welcome text is not visible */}
-      {!showWelcome && (
+    <ImageBackground source={require("../assets/background.jpg")} style={styles.screenContainer}>
+      <WelcomeSection />
+      <TouchableOpacity
+        style={styles.chevronContainer}
+        onPress={() => {
+          console.log("Chevron pressed! Navigating to Start...");
+          navigation.navigate("Start");
+        }}
+      >
         <Image
-          source={require("../assets/logo.png")} // Add your logo here
-          style={styles.logo}
+          source={require("../assets/chevron.png")}
+          style={{ width: 30, height: 30 }}
         />
-      )}
-
-      <WelcomeSection showWelcome={showWelcome} />
-
-      <SwipeSection isVisible={isVisible} />
-
-      <ChevronButton
-        toggleLoginForm={toggleLoginForm}
-        isVisible={isVisible}
-        chevronAnim={chevronAnim}
-      />
-
-      <LoginForm
-        slideAnim={slideAnim}
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-        loginHandler={loginHandler}
-      />
-
-
+      </TouchableOpacity>
+      <LoginForm />
     </ImageBackground>
-    
-      
   );
 };
 
@@ -231,100 +108,99 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   screenContainer: {
-    display: "flex",
     flex: 1,
     justifyContent: "flex-start",
-    alignItems: "center",
-    paddingTop: 50,
+    alignItems: "flex-start",
+    padding: 20,
   },
   welcomeContainer: {
-    marginTop: "5%", // 10 pixels on top
-    marginRight: "20%",
-    fontFamily: "LazyDog",
+    marginTop: 50,
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    paddingHorizontal: 20,
+    width: "100%",
   },
   header: {
-    fontFamily: "lazydog",
-    width: 280,
-    gap: 5,
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: "500",
+    fontFamily: 'LazyDog',
     marginVertical: 5,
     textAlign: "left",
     color: "#111213",
-    textShadowColor: "rgba(0, 0, 0, 0.5)",
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 5,
-    opacity: 100,
-    margin: 10,
-  },
-  swipeContainer: {
-    width: "100%",
-    color: "#111213",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: "90%",
-    // Space between header and swipe text
-  },
-  swipeText: {
-    color: "#111213",
-    fontSize: 18,
-    fontWeight: "600",
-    fontFamily: "LazyDog",
-    margin: 5,
-  },
-  chevronContainer: {
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  chevronButton: {
-    marginTop: 5,
   },
   loginContainer: {
-    position: "absolute",
-    bottom: 0,
-    backgroundColor: "#9A7E6F", // White box background
-    width: "100%",
-    height: "60%",
+    backgroundColor: "#9A7E6F",
+    width: "112%",
+    height: "auto",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5, // Shadow for Android
+    position: "absolute",
+    bottom: 0,
+    alignSelf: "center",
   },
-  inputHeader: {
-    fontSize: 20,
-    fontFamily: "LazyDog",
-    color: "fff",
-    margin: "8%",
-    // marginRight: "70%"
+  chevronContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: "100%",
+    marginTop: '33%',
   },
   inputContainer: {
     width: "100%",
-    // height: "80%",
     alignItems: "center",
-    color: "#D9D9D9",
+  },
+  start: {
+    width: 76,
+    height: 13,
+    marginBottom: 10,
+  },
+  inputHeader: {
+    fontSize: 20,
+    color: "#000000",
+    marginVertical: 8,
+    fontWeight: "500",
+    fontFamily: 'LazyDog',
+    marginBottom: 35
   },
   input: {
     height: 44,
-    width: 356,
+    width: "100%",
     padding: 10,
     marginVertical: 10,
     borderRadius: 12,
-    backgroundColor: "#F5F5F5", // Light gray background
-    color: "#333", // Dark color for input text
-    borderColor: "#BDBDBD", // Border color
+    backgroundColor: "#F5F5F5",
+    color: "#333",
+    borderColor: "#BDBDBD",
   },
-  inputAcc: {
-    font: 12,
-    margin: 10,
-    fontFamily: "LazyDog",
+  emailLabel: {
+    fontSize: 16,
+    color: "#000000",
+    marginRight: "70%",
+    fontWeight: "500",
+    fontFamily: 'LazyDog',
+  },
+  passLabel: {
+    fontSize: 16,
+    color: "#000000",
+    marginRight: "70%",
+    fontWeight: "500",
+    fontFamily: 'LazyDog',
+  },
+  passwordContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+  },
+  eyeIcon: {
+    width: 20,
+    height: 20,
+    marginLeft: -30,
+  },
+  inputForgot: {
+    fontSize: 12,
+    alignSelf: "flex-end",
+    margin: 5,
+    fontWeight: "500",
+    fontFamily: 'LazyDog',
   },
   buttonContainer: {
     width: "100%",
@@ -332,88 +208,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   button: {
-    backgroundColor: "#54473F", // Dark grey button color
-    margin: 30,
+    backgroundColor: "#54473F",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
     marginVertical: 5,
-    width: 359,
-    height: 55,
-    // margintop: "50%"
+    width: "100%",
   },
   buttonText: {
-    fontWeight: "bold",
-    justifyContent: "center",
-  },
-  buttonOutline: {
-    backgroundColor: "white",
-    // marginBottom: "30%",
-    borderColor: "#616D66", // Grey border color
-    borderWidth: 2,
-    width: "80%",
-    padding: 15,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-  buttonOutlineText: {
-    color: "#616D66",
-    fontWeight: "bold",
-  },
-  logo: {
-    width: 250,
-    height: 250,
-    opacity: 1,
-    position: "absolute",
-    top: 130,
-    alignSelf: "center", // Centers horizontally
-  },
-  emailLabel: {
     fontSize: 16,
-    fontFamily: "LazyDog", // Apply LazyDog font
-    color: "#000000",
-    flex: "start",
-    marginRight: "70%",
+    fontWeight: "500",
+    fontFamily: 'LazyDog',
   },
-  passLabel: {
-    fontSize: 16,
-    fontFamily: "LazyDog", // Apply LazyDog font
-    color: "#000000",
-    flex: "start",
-    marginRight: "70%",
+  inputAcc: {
+    fontSize: 14,
+    margin: 10,
+    fontWeight: "500",
+    fontFamily: 'LazyDog',
   },
-  passwordInputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderWidth: 1,
-    borderRadius: 12,
-    borderColor: "#ccc",
-    backgroundColor: "#F5F5F5",
-    marginVertical: 10,
-    position: "relative", // Allows absolute positioning of the icon
-  },
-  passwordInput: {
-    flex: 1, // Fills available space
-    height: 44,
-    padding: 10,
-    paddingRight: 40, // Add padding to the right to avoid text overlap with the icon
-    color: "#333",
-  },
-  inputForgot:{
-    font: 12,
-    alignSelf: "flex-end",
-    margin: 5,
-    fontFamily: "LazyDog",
-    
-  },
-  eyeIcon: {
-    position: "absolute",
-    right: 10, // Positioning to the right
-    top: 12, // Center it vertically within the input
-  },  
-  eyeImage: {
-    width: 24,
-    height: 24,
-    resizeMode: "contain",
-  },
-});  
+});

@@ -1,5 +1,6 @@
 import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
+// import Fonts from '../Fonts';
 
 const HomeScreen = () => {
   return (
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 1,
     padding: 15,
-    gap: "30%",
+    gap: 30,
   },
   profile: {
     width: 100,
@@ -160,9 +161,9 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     borderRadius: 10,
-    borderTopLeftRadius: 25, // Apply radius only to top-left
-    borderTopRightRadius: 25, // Apply radius only to top-right
-    borderBottomLeftRadius: 0, // No radius on bottom-left
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25, 
+    borderBottomLeftRadius: 0, 
     borderBottomRightRadius: 0,
   },
   contentbox: {
@@ -177,9 +178,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 2,
-    justifyContent: "center", // Center vertically
-    alignItems: "center", // Center horizontally
-  },
+    justifyContent: "center",
+    alignItems: "center", 
+ },
   boxText: {
     color: "#000",
     fontSize: 16,
@@ -190,27 +191,27 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 30,
     // justifyContent: "space-between",
-    flexDirection: "column", // Change to column to stack rows
+    flexDirection: "column", 
     gap: 30,
     // margin: 15,
   },
   rowWrapper: {
-    flexDirection: "row", // Each row will have two boxes
-    justifyContent: "space-around", // Space boxes evenly
+    flexDirection: "row", 
+    justifyContent: "space-around", 
     width: "100%",
   },
   mage: {
     width: 92,
     height: 92,
-    alignSelf: "center", // Center horizontally
+    alignSelf: "center", 
   },
   box: {
     width: 162,
     height: 142,
     backgroundColor: "#ffffff",
     borderRadius: 8,
-    justifyContent: "center", // Center vertically
-    alignItems: "center", // Center horizontally
+    justifyContent: "center", 
+    alignItems: "center", 
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
