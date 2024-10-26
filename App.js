@@ -8,6 +8,7 @@ import HomeScreen from "./screens/HomeScreen";
 import AboutScreen from "./screens/AboutScreen"; 
 import BeaconScreen from "./screens/BeaconScreen"; 
 import StartupScreen from "./screens/StartScreen";
+import TeamScreen from "./screens/TeamScreen";
 import {appLoading} from 'expo';
 
 
@@ -36,6 +37,8 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="About" component={AboutScreen} />
         <Stack.Screen name="Beacon" component={BeaconScreen} />
+        <Stack.Screen name="Team" component={TeamScreen}/>
+
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

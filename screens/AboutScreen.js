@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
-// import Fonts from '../Fonts';
 
 
-    const AboutScreen = () => {
+
+  const AboutScreen = () => {
       return (
         <ScrollView contentContainerStyle={styles.containerMain}>
           {/* Header Box */}
@@ -25,10 +25,10 @@ import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
       
           {/* Main Content */}
       
-          <View style={styles.headContainer}>
-            <Text style={styles.title}>About Us</Text>
+      <View style={styles.headContainer}>
+            {/* <Text style={styles.title}>About Us</Text> */}
             <Text style={styles.paragraph}>
-              <Text style={styles.highlight}></Text>Welcome to ByteBakers where
+            <Text style={styles.highlight}></Text>Welcome to ByteBakers where
             </Text>
             <Text style={styles.paragraph}>
               technology meets the art of baking! We
@@ -80,6 +80,36 @@ import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
               your sweet cravings—one byte at a time!
             </Text>
           </View>
+
+      <View style={styles.navContainer}>
+          <View style={styles.secColumn}>
+              <Image 
+                source={require("../assets/home.png")} 
+                style={styles.home} 
+              />
+              <Image
+                source={require("../assets/heart.png")}
+                style={styles.heart}
+              />
+              
+          <View style={styles.addColumn}>
+              <Image
+                source={require("../assets/add.png")}
+                style={styles.add}
+              />
+
+          </View>
+              <Image 
+                source={require("../assets/shop.png")} 
+                style={styles.shop} 
+              />
+          
+              <Image
+                source={require("../assets/user.png")}
+                style={styles.user}
+              />
+          </View>
+      </View>
         </ScrollView>
       );
     };
@@ -87,11 +117,10 @@ import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
     const styles = StyleSheet.create({
       containerMain: {
         flexGrow: 1,
-        // padding: 20,
+        height: "126%",
         backgroundColor: "#9a7e6f",
       },
       headerContainer: {
-        // position: "absolute",
         width: "100%",
         alignItems: "center",
         backgroundColor: "#9a7e6f",
@@ -101,7 +130,6 @@ import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
         height: "50%",
         position: "absolute",
         backgroundColor: "#54473F",
-      
         padding: 15,
         marginBottom: 10,
         shadowColor: "#000",
@@ -143,7 +171,6 @@ import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
         fontWeight: "bold",
         color: "#ffd700",
       },
-    
       pastry: {
         width: "90%",
         height: 192,
@@ -151,22 +178,19 @@ import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
         alignContent: "center",
         margin: 39,
         borderRadius: 15,
-        // position: "absolute"
       },
-    
       mainMenu: {
-        width: "100%",
+        width: "90%",
         height: "auto",
         backgroundColor: "#9A7E6F",
-        justifyContent: "flex-start",
+        justifyContent: "center",
         alignItems: "center",
         padding: 5,
         flexDirection: "row",
         justifyContent: "space-between",
       },
       menuContainer: {
-        width: "45%",
-        height: "70%",
+        width: "50%",
         backgroundColor: "#54473F",
         borderRadius: 24,
         padding: 15,
@@ -183,6 +207,7 @@ import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
       headContainer: {
         width: "100%",
         alignItems: "center",
+        marginTop: 30,
         justifyContent: "center",
       },
       Text: {
@@ -190,6 +215,60 @@ import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
         fontSize: 14,
         color: "#FFFFFF",
       },
+      navContainer: {
+        display: "flex",
+        width: "100%",
+        height: "11%",
+        alignItems: "center",
+        justifyContent: "center",
+      },
+      secColumn: {
+        flexDirection: "row",
+        gap: 40,
+        alignItems: "center",
+        width: "100%",
+        padding: 10,
+        backgroundColor: "#54473F",
+        marginTop: 90
+      },
+      addWrapper: {
+        padding: 20
+      },
+      addColumn: {
+        width: 55,
+        height: 55,
+        borderRadius: 50,
+        justifyContent: "center",
+        alignItems: "center",
+        position: "absolute",
+        top: -30, 
+        left: "48%", 
+        transform: [{ translateX: -8.5 }], 
+        zIndex: 1, 
+        backgroundColor: "#54473f",
+      },
+      add: {
+        margin: 0
+      },
+      home: {
+        marginLeft: "5%"
+      },
+      shop: {
+        marginLeft: "20%"
+      },
+      extraContainer: {
+        width: "1%",
+        height: 1,
+        alignItems: "center",
+        justifyContent: "flex-start", 
+        backgroundColor: "#9a7e6f",
+        borderBottomLeftRadius: 40,
+        borderBottomRightRadius: 40,
+        position: "relative",
+        paddingVertical: 13,
+        paddingHorizontal: 23,
+        backgroundColor: "#fff"
+      },
+     
     });
-
     export default AboutScreen;

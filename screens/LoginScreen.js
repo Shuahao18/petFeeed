@@ -1,8 +1,8 @@
-import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Animated, Easing, Image } from "react-native";
+import {ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Animated, Easing, Image,} from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-const LoginScreen = () => {
+  const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showWelcome, setShowWelcome] = useState(false);
@@ -10,97 +10,100 @@ const LoginScreen = () => {
   const navigation = useNavigation();
   const slideAnim = useRef(new Animated.Value(0)).current;
 
-  const WelcomeSection = () => (
-    <View style={styles.welcomeContainer}>
-      {showWelcome && (
-        <>
-          <Text style={styles.header}>WELCOME! ENJOY</Text>
-          <Text style={styles.header}>EXPLORING OUR</Text>
-          <Text style={styles.header}>BYTEBAKES</Text>
-          <Text style={styles.header}>PASTRY SHOP</Text>
-        </>
-      )}
-    </View>
-  );
+        const WelcomeSection = () => (
+          <View style={styles.welcomeContainer}>
+            {showWelcome && (
+              <>
+                <Text style={styles.header}>WELCOME! ENJOY</Text>
+                <Text style={styles.header}>EXPLORING OUR</Text>
+                <Text style={styles.header}>BYTEBAKES</Text>
+                <Text style={styles.header}>PASTRY SHOP</Text>
+              </>
+            )}
+          </View>
+        );
+      
+        const LoginForm = () => (
+          <Animated.View
+            style={[
+              styles.loginContainer,
+              { transform: [{ translateY: slideAnim }] },
+            ]}
+          >
+            <KeyboardAvoidingView behavior="padding" style={{ width: "100%" }}>
+              <View style={styles.inputContainer}>
+                <Image source={require("../assets/Track.png")} style={styles.start} />
+                <Text style={styles.inputHeader}>Enter your account</Text>
+              </View>
+          
+              <Text style={styles.emailLabel}>USERNAME</Text>
+              <TextInput
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+                style={styles.input}
+              />
+              <Text style={styles.passLabel}>PASSWORD</Text>
+              <View style={styles.passwordContainer}>
+                <TextInput
+                  value={password}
+                  onChangeText={(text) => setPassword(text)}
+                  style={styles.input}
+                  secureTextEntry={!showPassword}
+                />
+                <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                  <Image
+                    source={require("../assets/eye.jpg")}
+                    style={styles.eyeIcon}
+                  />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.inputForgot}>Forgot the password?</Text>
+          
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity onPress={loginHandler} style={styles.button}>
+                  <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+                <Text style={styles.inputAcc}>Don’t have an account? Sign Up.</Text>
+              </View>
+            </KeyboardAvoidingView>
+          </Animated.View>
+        );
 
-  const LoginForm = () => (
-    <Animated.View
-      style={[styles.loginContainer, { transform: [{ translateY: slideAnim }] }]}
-    >
-      <KeyboardAvoidingView behavior="padding" style={{ width: "100%" }}>
-        <View style={styles.inputContainer}>
-          <Image 
-            source={require("../assets/Track.png")} 
-            style={styles.start} 
-          />
-          <Text style={styles.inputHeader}>Enter your account</Text>
-        </View>
+        useEffect(() => {
+          setShowWelcome(true);
+          Animated.timing(slideAnim, {
+            toValue: 0,
+            duration: 300,
+            easing: Easing.out(Easing.ease),
+            useNativeDriver: true,
+          }).start();
+        }, []);
 
-        <Text style={styles.emailLabel}>USERNAME</Text>
-        <TextInput
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-          style={styles.input}
-        />
-        <Text style={styles.passLabel}>PASSWORD</Text>
-        <View style={styles.passwordContainer}>
-          <TextInput
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-            style={styles.input}
-            secureTextEntry={!showPassword}
-          />
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-            <Image
-              source={require("../assets/eye.jpg")}
-              style={styles.eyeIcon}
-            />
-          </TouchableOpacity>
-        </View>
-        <Text style={styles.inputForgot}>Forgot the password?</Text>
-        
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={loginHandler} style={styles.button}>
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
-          <Text style={styles.inputAcc}>Don’t have an account? Sign Up.</Text>
-        </View>
-      </KeyboardAvoidingView>
-    </Animated.View>
-  );
-
-  useEffect(() => {
-    setShowWelcome(true);
-    Animated.timing(slideAnim, {
-      toValue: 0,
-      duration: 300,
-      easing: Easing.out(Easing.ease),
-      useNativeDriver: true,
-    }).start();
-  }, []);
-
-  const loginHandler = () => {
-    // Navigate directly to HomeScreen without validating credentials
-    navigation.navigate("Beacon"); 
-  };
-
-  return (
-    <ImageBackground source={require("../assets/background.jpg")} style={styles.screenContainer}>
-      <WelcomeSection />
-      <TouchableOpacity
-        style={styles.chevronContainer}
-        onPress={() => {
-          console.log("Chevron pressed! Navigating to Start...");
-          navigation.navigate("Start");
-        }}
-      >
-        <Image
-          source={require("../assets/chevron.png")}
-          style={{ width: 30, height: 30 }}
-        />
-      </TouchableOpacity>
-      <LoginForm />
-    </ImageBackground>
+        const loginHandler = () => {
+          // Navigate directly to HomeScreen without validating credentials
+          navigation.navigate("Team");
+        };
+      
+        return (
+          <ImageBackground
+            source={require("../assets/background.jpg")}
+            style={styles.screenContainer}
+          >
+            <WelcomeSection />
+            <TouchableOpacity
+              style={styles.chevronContainer}
+              onPress={() => {
+                console.log("Chevron pressed! Navigating to Start...");
+                navigation.navigate("Start");
+              }}
+            >
+              <Image
+                source={require("../assets/chevron.png")}
+                style={{ width: 30, height: 30 }}
+              />
+            </TouchableOpacity>
+            <LoginForm />
+          </ImageBackground>
   );
 };
 
@@ -122,7 +125,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: "500",
-    fontFamily: 'LazyDog',
+    fontFamily: "LazyDog",
     marginVertical: 5,
     textAlign: "left",
     color: "#111213",
@@ -139,10 +142,10 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   chevronContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     width: "100%",
-    marginTop: '33%',
+    marginTop: "33%",
   },
   inputContainer: {
     width: "100%",
@@ -158,8 +161,8 @@ const styles = StyleSheet.create({
     color: "#000000",
     marginVertical: 8,
     fontWeight: "500",
-    fontFamily: 'LazyDog',
-    marginBottom: 35
+    fontFamily: "LazyDog",
+    marginBottom: 35,
   },
   input: {
     height: 44,
@@ -176,14 +179,14 @@ const styles = StyleSheet.create({
     color: "#000000",
     marginRight: "70%",
     fontWeight: "500",
-    fontFamily: 'LazyDog',
+    fontFamily: "LazyDog",
   },
   passLabel: {
     fontSize: 16,
     color: "#000000",
     marginRight: "70%",
     fontWeight: "500",
-    fontFamily: 'LazyDog',
+    fontFamily: "LazyDog",
   },
   passwordContainer: {
     flexDirection: "row",
@@ -200,7 +203,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     margin: 5,
     fontWeight: "500",
-    fontFamily: 'LazyDog',
+    fontFamily: "LazyDog",
   },
   buttonContainer: {
     width: "100%",
@@ -218,12 +221,12 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: "500",
-    fontFamily: 'LazyDog',
+    fontFamily: "LazyDog",
   },
   inputAcc: {
     fontSize: 14,
     margin: 10,
     fontWeight: "500",
-    fontFamily: 'LazyDog',
+    fontFamily: "LazyDog",
   },
 });
