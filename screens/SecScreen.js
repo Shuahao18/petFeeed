@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, StyleSheet, Image, ScrollView, Text} from 'react-native';
 
-const TeamScreen = () => {
+const SecScreen = () => {
   return (
     <ScrollView 
       contentContainerStyle={styles.scrollContainer} 
@@ -10,17 +10,19 @@ const TeamScreen = () => {
       <View style={styles.flyerContainer}>
 
         {/* Heading Image with Button on Top-Left */}
-        <View style={styles.headingContainer}>
-          <Image source={require('../assets/team14.png')} style={styles.heading} />
+        <View style={styles.profileContainer}>
           <Image source={require('../assets/slideBtn.png')} style={styles.btn} />
         </View>
-
-        {/* Profiles */}
-        <View style={styles.profileContainer}>
-          <Image source={require('../assets/meredores.png')} style={styles.profile} />
+        <Image source={require('../assets/meredores.png')} style={styles.profile} />
           <Image source={require('../assets/avenido.png')} style={styles.profile} />
           <Image source={require('../assets/macahilo.png')} style={styles.profile} />
+        {/* Profiles */}
+        <View style={styles.headingContainer}>
+            <View style={styles.homeContainer}>
+                    <Text style={styles.Text}>Home</Text>
         </View>
+        </View>
+
 
       </View>
     </ScrollView>
@@ -34,10 +36,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 20,
     paddingTop: 40
+
   },
   flyerContainer: {
     width: '90%',
-    paddingVertical: 10,
     alignItems: 'center',
     backgroundColor: '#1D2023',
     borderRadius: 25,
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
   headingContainer: {
     width: 300,
     height: 96,
-    marginBottom: 20,
+    // marginBottom: 20,
     position: 'relative', // Allows absolute positioning of button
     alignItems: 'center',
     justifyContent: 'center',
@@ -63,8 +65,8 @@ const styles = StyleSheet.create({
   },
   btn: {
     position: 'absolute',
-    top: -10,
-    left: -10, // Adjust to move it closer to the upper left of heading
+    top: 10,
+    left: 1, // Adjust to move it closer to the upper left of heading
     width: 58,
     height: 54,
   },
@@ -77,8 +79,21 @@ const styles = StyleSheet.create({
     height: 200,
     marginVertical: 10,
     borderRadius: 15,
+    marginTop: 50,
     resizeMode: 'cover',
   },
+  homeContainer: {
+    width: 208,
+    height: 40,
+    backgroundColor: "#54473F",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 37
+  },
+  Text: {
+    fontSize: 16,
+    color: "#ffffff"
+  }
 });
 
-export default TeamScreen;
+export default SecScreen;

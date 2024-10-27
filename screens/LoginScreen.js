@@ -1,3 +1,4 @@
+
 import {ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Animated, Easing, Image,} from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -81,7 +82,7 @@ import { useNavigation } from "@react-navigation/native";
 
         const loginHandler = () => {
           // Navigate directly to HomeScreen without validating credentials
-          navigation.navigate("Team");
+          navigation.navigate("Home");
         };
       
         return (

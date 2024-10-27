@@ -19,12 +19,12 @@ const StartupScreen = () => {
 
   const toggleLoginForm = () => {
         Animated.timing(chevronAnim, {
-          toValue: -20, // Move chevron upwards
+          toValue: -20, 
           duration: 300,
           easing: Easing.out(Easing.ease),
           useNativeDriver: true,
         }).start(() => {
-          navigation.navigate("Login"); // Navigate to the login screen after the animation
+          navigation.navigate("Login"); 
         });
                                 };
 
