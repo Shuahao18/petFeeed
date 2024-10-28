@@ -34,16 +34,16 @@ import { useNavigation } from "@react-navigation/native";
             <KeyboardAvoidingView behavior="padding" style={{ width: "100%" }}>
               <View style={styles.inputContainer}>
                 <Image source={require("../assets/Track.png")} style={styles.start} />
-                <Text style={styles.inputHeader}>Enter your account</Text>
+                <Text style={styles.inputHeader}>ENTER YOUR ACCOUNT</Text>
               </View>
           
-              <Text style={styles.emailLabel}>USERNAME</Text>
+              <Text style={styles.emailLabel}>Username</Text>
               <TextInput
                 value={email}
                 onChangeText={(text) => setEmail(text)}
                 style={styles.input}
               />
-              <Text style={styles.passLabel}>PASSWORD</Text>
+              <Text style={styles.passLabel}>Password</Text>
               <View style={styles.passwordContainer}>
                 <TextInput
                   value={password}
@@ -64,7 +64,9 @@ import { useNavigation } from "@react-navigation/native";
                 <TouchableOpacity onPress={loginHandler} style={styles.button}>
                   <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
-                <Text style={styles.inputAcc}>Don’t have an account? Sign Up.</Text>
+                <Text style={styles.inputAcc}>Don’t have an account?</Text>
+                <Text style={styles.SignAcc}>Sign Up</Text>
+
               </View>
             </KeyboardAvoidingView>
           </Animated.View>
@@ -81,15 +83,17 @@ import { useNavigation } from "@react-navigation/native";
         }, []);
 
         const loginHandler = () => {
-          // Navigate directly to HomeScreen without validating credentials
-          navigation.navigate("Home");
+          navigation.navigate("Shop");
         };
       
         return (
           <ImageBackground
             source={require("../assets/background.jpg")}
             style={styles.screenContainer}
+            
           >
+          <Image source={require("../assets/transparent.png")} style={styles.parent} />
+
             <WelcomeSection />
             <TouchableOpacity
               style={styles.chevronContainer}
@@ -119,17 +123,17 @@ const styles = StyleSheet.create({
   },
   welcomeContainer: {
     marginTop: 50,
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
+    justifyContent: "center",
+    alignItems: "center",
     width: "100%",
   },
   header: {
-    fontSize: 24,
-    fontWeight: "500",
-    fontFamily: "LazyDog",
+    fontSize: 40,
+    fontWeight: "900",
+    fontFamily: "",
     marginVertical: 5,
     textAlign: "left",
-    color: "#111213",
+    color: "#FFFFFF",
   },
   loginContainer: {
     backgroundColor: "#9A7E6F",
@@ -146,11 +150,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    marginTop: "33%",
+    marginTop: "3%",
   },
   inputContainer: {
     width: "100%",
     alignItems: "center",
+  },
+  parent: {
+    position: "absolute"
   },
   start: {
     width: 76,
@@ -159,10 +166,11 @@ const styles = StyleSheet.create({
   },
   inputHeader: {
     fontSize: 20,
-    color: "#000000",
+    color: "#FFFFFF",
     marginVertical: 8,
     fontWeight: "500",
-    fontFamily: "LazyDog",
+    fontFamily: "Nunito",
+    fontWeight: "900",
     marginBottom: 35,
   },
   input: {
@@ -177,17 +185,19 @@ const styles = StyleSheet.create({
   },
   emailLabel: {
     fontSize: 16,
-    color: "#000000",
-    marginRight: "70%",
+    color: "#FFFFFF",
+    marginLeft: 5,
     fontWeight: "500",
-    fontFamily: "LazyDog",
+    fontFamily: "Nunito",
+    fontWeight: "900",
   },
   passLabel: {
     fontSize: 16,
-    color: "#000000",
-    marginRight: "70%",
+    color: "#FFFFFF",
+    marginLeft: 5,
     fontWeight: "500",
-    fontFamily: "LazyDog",
+    fontFamily: "Nunito",
+    fontWeight: "900",  
   },
   passwordContainer: {
     flexDirection: "row",
@@ -203,8 +213,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     alignSelf: "flex-end",
     margin: 5,
+    fontFamily: "Nunito",
     fontWeight: "500",
-    fontFamily: "LazyDog",
+    color: "#FFFFFF"
   },
   buttonContainer: {
     width: "100%",
@@ -221,13 +232,29 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: "500",
-    fontFamily: "LazyDog",
+    fontWeight: "900",
+    fontFamily: "Nunito",
+    color: "#FFFFFF"
   },
   inputAcc: {
     fontSize: 14,
     margin: 10,
     fontWeight: "500",
-    fontFamily: "LazyDog",
+    fontFamily: "Nunito",
+    color: "#FFFFFF",
+    left: -30
   },
+  SignAcc: {
+    fontSize: 14,
+    margin: 10,
+    fontWeight: "500",
+    fontFamily: "Nunito",
+    fontWeight: "900",
+    position: "absolute",
+    top: 58,
+    right: 75
+,
+    color: "#FFFFFF"
+  },
+  
 });

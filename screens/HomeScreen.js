@@ -1,7 +1,9 @@
-import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
+import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity} from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView
       style={{ flex: 1 }} 
@@ -77,36 +79,68 @@ const HomeScreen = () => {
       </View>
 
       <View style={styles.navContainer}>
-        <View style={styles.secColumn}>
-          <Image 
-            source={require("../assets/home.png")} 
-            style={styles.home} 
-          />
-          
-          <Image
-            source={require("../assets/heart.png")}
-            style={styles.heart}
-          />
-          
-          <View style={styles.addColumn}>
-              <Image
-                source={require("../assets/add.png")}
-                style={styles.add}
-              />
-          </View>
-         
-          <Image 
-            source={require("../assets/shop.png")} 
-            style={styles.shop} 
-          />
-          
-          <Image
-            source={require("../assets/user.png")}
-            style={styles.user}
-          />
+            <View style={styles.secColumn}>
+                <TouchableOpacity 
+                    onPress={() => {
+                        console.log('');
+                        // navigation.navigate("");
+                        }}
+                        >    
+                    <Image 
+                      source={require("../assets/home.png")} 
+                      style={styles.home} 
+                    />
+               </TouchableOpacity>  
+
+
+               <TouchableOpacity 
+                    onPress={() => {
+                        console.log('Navigating to About');
+                        navigation.navigate("About");
+                        }}
+                        >  
+                <Image
+                  source={require("../assets/heart.png")}
+                  style={styles.heart}
+                />
+                </TouchableOpacity>
+                
+
+                
+            <View style={styles.addColumn}>
+                <Image
+                  source={require("../assets/add.png")}
+                  style={styles.add}
+                />
+
+            </View>
+
+          <TouchableOpacity 
+           onPress={() => {
+               console.log('Navigating to Shop');
+               navigation.navigate("Shop");
+           }}
+            >       
+           <Image 
+               source={require("../assets/shop.png")} 
+               style={styles.shop} 
+           />
+         </TouchableOpacity>
+
+         <TouchableOpacity 
+           onPress={() => {
+               console.log('Navigating to Home');
+               navigation.navigate("Home");
+           }}
+            >       
+           <Image 
+               source={require("../assets/personW.png")} 
+               style={styles.user} 
+           />
+         </TouchableOpacity>
+            </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
   );
 };
 
@@ -153,12 +187,13 @@ const styles = StyleSheet.create({
     height: 99,
     borderRadius: 20,
     marginLeft: 30,
+   
   },
   header: {
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: "900",
     color: "#ffffff",
-    fontFamily: "LazyDog",
+    fontFamily: "Nunito",
     marginLeft: 20,
   },
   mainBox: {
@@ -193,13 +228,15 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     textAlign: "center",
-    fontFamily: "LazyDog",
+    fontFamily: "Nunito",
+    fontWeight: "900"
   },
   text: {
     color: "#000",
     fontSize: 16,
     textAlign: "center",
-    fontFamily: "LazyDog",
+    fontFamily: "Nunito",
+    fontWeight: "900"
   },
   mainWrapper: {
     width: "100%",
@@ -229,22 +266,20 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   navContainer: {
-    display: "flex",
     width: "100%",
-    height: "11%",
-    alignItems: "center",
+    height: 50,
     justifyContent: "center",
-
+    alignItems: "center",
+    marginBottom: 0,
+    backgroundColor: "#54473F",
+    marginTop: 60
   },
   secColumn: {
     flexDirection: "row",
-    gap: 40,
+    justifyContent: "space-between", 
     alignItems: "center",
-    width: "100%",
-    padding: 10,
-    backgroundColor: "#54473F",
-    marginTop: 90
-   
+    width: "90%",
+    paddingHorizontal: 10,
   },
   addWrapper: {
     padding: 20
@@ -256,20 +291,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
-    top: -30, 
+    top: -40, 
     left: "48%", 
     transform: [{ translateX: -8.5 }], 
     zIndex: 1, 
     backgroundColor: "#54473f",
   },
   add: {
-    margin: 0
+    
   },
   home: {
-    marginLeft: "5%"
+  },
+  heart: {
+    marginRight: 30,
   },
   shop: {
-    marginLeft: "20%"
+    marginLeft: 30
   },
   extraContainer: {
     width: "1%",

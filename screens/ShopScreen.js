@@ -25,7 +25,7 @@ import { View, Text, StyleSheet, ScrollView, Image, TextInput, TouchableOpacity}
                     />
 
             <Image
-                source={require("../assets/search.png")} // Ensure you have the correct path for search.png
+                source={require("../assets/search.png")} 
                 style={styles.searchIcon}
             />
             </View>
@@ -139,7 +139,6 @@ import { View, Text, StyleSheet, ScrollView, Image, TextInput, TouchableOpacity}
         flexDirection: "column",
         alignItems: "center",
         marginTop: 40
-        
       },
       shopBox: {
         width: "100%",
@@ -179,7 +178,7 @@ import { View, Text, StyleSheet, ScrollView, Image, TextInput, TouchableOpacity}
           height: 44,
           position: "absolute",
           backgroundColor: "#9A7E6F",
-          fontFamily: 'LazyDog',
+          fontFamily: 'Nunito',
           borderRadius: 10,
           paddingHorizontal: 15,
           borderWidth: 1,        
@@ -275,26 +274,21 @@ import { View, Text, StyleSheet, ScrollView, Image, TextInput, TouchableOpacity}
         marginRight: 2,
       },
       detailBtn: {
-        width: 80,  // Adjust width if needed for centering
-        fontSize:9,  // Slightly larger font size for better appearance
-        height: 20,  // Adjust height for better alignment
+        width: 80,  
+        fontSize:9,  
+        height: 20,  
         backgroundColor: "#54473F",
         color: "#FFFFFF",
         fontFamily: "LazyDog",
         borderRadius: 5,
-      
-        // Center the text within the button
         textAlign: "center",
-        textAlignVertical: "center", // Ensures vertical centering
+        textAlignVertical: "center", 
         justifyContent: "center",
         alignItems: "center",
-      
-        // Adjust position on the screen
         position: "absolute",
         top: 90,
-        left: 150, // Fine-tune for proper alignment within the container
+        left: 150, 
       },
-      
       star: {
         width:60,
         height: 13,
@@ -357,15 +351,12 @@ import { View, Text, StyleSheet, ScrollView, Image, TextInput, TouchableOpacity}
         paddingVertical: 13,
         paddingHorizontal: 23,
         backgroundColor: "#fff"
-        
       },
       searchIcon: {
-        width: 24,  // Set the width for the icon
-        height: 24, // Set the height for the icon
+        width: 24,  
+        height: 24, 
         resizeMode: "contain",
-        marginLeft: "70%"// Space between input and icon
-       
+        marginLeft: "70%"
       },
-     
     });
     export default ShopScreen;

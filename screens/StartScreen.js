@@ -1,7 +1,7 @@
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, Animated, Easing } from "react-native";
 import React, { useRef, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { auth } from "../firebase"; // Import your Firebase configuration
+import { auth } from "../firebase";
 
 const StartupScreen = () => {
   const navigation = useNavigation();
@@ -44,7 +44,7 @@ const StartupScreen = () => {
               <Text style={styles.swipeText}>LOGIN AND TO</Text>
               <Text style={styles.swipeText}>KNOW MORE</Text>
               <Text style={styles.swipeText}>ABOUT OUR</Text>
-              <Text style={styles.swipeText}>CUTESY SHOP</Text>
+              <Text style={styles.swipeText}>CUTESY SHOP.</Text>
             </View>
 
 
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "space-between", 
-    paddingVertical: 60,
-    marginTop: 40
+    paddingVertical: 70,
+    marginTop: 80
   },
   textContainer: {
     alignItems: "center", 
@@ -101,9 +101,10 @@ const styles = StyleSheet.create({
   swipeText: {
     color: "#000000",
     fontSize: 30,
-    fontWeight: "600",
+    fontWeight: "900",
     margin: 5,
-    fontFamily: 'LazyDog',
+    fontFamily: 'Nunito',
+    lineHeight: 29,
   },
   chevronContainer: {
     alignItems: "center",

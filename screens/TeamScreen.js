@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const TeamScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <ScrollView 
       contentContainerStyle={styles.scrollContainer} 
@@ -9,19 +12,32 @@ const TeamScreen = () => {
     >
       <View style={styles.flyerContainer}>
 
-        {/* Heading Image with Button on Top-Left */}
         <View style={styles.headingContainer}>
-          <Image source={require('../assets/team14.png')} style={styles.heading} />
-          <Image source={require('../assets/slideBtn.png')} style={styles.btn} />
+          <TouchableOpacity
+            style={styles.btnTouchable} 
+            onPress={() => {
+              console.log('teamBtn click');
+              navigation.navigate('Second');
+            }}
+          >
+            <Image 
+              source={require('../assets/go.png')} 
+              style={styles.forward} 
+            />
+          </TouchableOpacity>
+
+          <Image 
+            source={require('../assets/team14.png')} 
+            style={styles.heading} 
+          />
         </View>
 
-        {/* Profiles */}
+      
         <View style={styles.profileContainer}>
-          <Image source={require('../assets/meredores.png')} style={styles.profile} />
-          <Image source={require('../assets/avenido.png')} style={styles.profile} />
+          <Image source={require('../assets/joshua.png')} style={styles.profile} />
+          <Image source={require('../assets/ave.png')} style={styles.profile} />
           <Image source={require('../assets/macahilo.png')} style={styles.profile} />
         </View>
-
       </View>
     </ScrollView>
   );
@@ -33,7 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#54473F',
     alignItems: 'center',
     paddingVertical: 20,
-    paddingTop: 40
+    paddingTop: 40,
   },
   flyerContainer: {
     width: '90%',
@@ -51,7 +67,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 96,
     marginBottom: 20,
-    position: 'relative', // Allows absolute positioning of button
+    position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -59,14 +75,19 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'contain',
-    marginTop: 50
+    marginTop: 50,
   },
-  btn: {
+  btnTouchable: {
     position: 'absolute',
-    top: -10,
-    left: -10, // Adjust to move it closer to the upper left of heading
-    width: 58,
+    top: -20, 
+    right: -13,
+    zIndex: 10, 
+    padding: 10, 
+  },
+  forward: {
+    width: 56,
     height: 54,
+    resizeMode: 'contain',
   },
   profileContainer: {
     width: '100%',

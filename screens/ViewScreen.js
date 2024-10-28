@@ -1,29 +1,89 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  ScrollView, 
+  Image, 
+  TouchableOpacity 
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const ViewScreen = () => {
+  const navigation = useNavigation();
+
   return (
-    <ScrollView contentContainerStyle={styles.containerMain}>
-      {/* Header Section */}
-
+    <ScrollView 
+      contentContainerStyle={styles.containerMain}
+      keyboardShouldPersistTaps="handled" 
+    >
+      {/* Main Text Section */}
       <View style={styles.docsContainer}>
-                <Text style={styles.header}>To enhance the professional appearance of our layout,  </Text>
-                <Text style={styles.header}>we’ve incorporated increased line spacing. This not</Text>
-                <Text style={styles.header}>only improves legibility but also contributes to an airy, </Text>
-                <Text style={styles.header}>open feel, which is essential for modern design.</Text>
-                <Text style={styles.header}>Our color palette is intentionally curated to evoke a </Text>
-                <Text style={styles.header}>minimalist vibe. We primarily utilize a combination of</Text>
-                <Text style={styles.header}>black and white, which establishes a clean and </Text>
-                <Text style={styles.header}>sophisticated foundation. Additionally, we introduce</Text>
-                <Text style={styles.header}>shades of brown to add warmth and character without</Text>
-                <Text style={styles.header}>compromising the overall minimalism. This thoughtful</Text>
-                <Text style={styles.header}>color scheme helps to visualize our design principles</Text>
-                <Text style={styles.header}>effectively, balancing simplicity with a hint of charm.</Text>
-    
-          </View>
+        <Text style={styles.header}>
+          To enhance the professional appearance of our  
+        </Text>
+        <Text style={styles.header}>
+          layout, we’ve incorporated increased line spacing. 
+        </Text>
+        <Text style={styles.header}>
+        This not only improves legibility but also contributes 
+        </Text>
+        <Text style={styles.header}>
+        to an airy, open feel, which is essential for modern 
+        </Text>
+        <Text style={styles.header}>
+        design. {'\n'}
+        </Text>
+        <Text style={styles.header}>
+          Our color palette is intentionally curated to evoke a 
+        </Text>
+        <Text style={styles.header}>
+          minimalist vibe. We primarily utilize a combination of
+        </Text>
+        <Text style={styles.header}>
+          black and white, which establishes a clean and 
+        </Text>
+        <Text style={styles.header}>
+          sophisticated foundation. Additionally, we introduce
+        </Text>
+        <Text style={styles.header}>
+          shades of brown to add warmth and character 
+        </Text>
+        <Text style={styles.header}>
+          without compromising the overall minimalism. This 
+        </Text>
+        <Text style={styles.header}>
+          thoughtful color scheme helps to visualize our design 
+        </Text>
+        <Text style={styles.header}>
+          principles effectively, balancing simplicity with a hint
+        </Text>
+        <Text style={styles.header}>
+          of charm.        
+        </Text>
+       
+      </View>
 
-          <View style={styles.headerContainer}>
-        <Image source={require("../assets/bread.png")} style={styles.bread} />
+      {/* Forward Button */}
+      <TouchableOpacity
+        style={styles.btnTouchable}
+        onPress={() => {
+          console.log("viewBtn click");
+          navigation.navigate("Team");
+        }}
+      >
+        <Image 
+          source={require("../assets/forward.png")} 
+          style={styles.forward} 
+        />
+      </TouchableOpacity>
+
+      {/* Bread Image Section */}
+      <View style={styles.headerContainer}>
+        <Image 
+          source={require("../assets/bread.png")} 
+          style={styles.bread} 
+        />
       </View>
     </ScrollView>
   );
@@ -39,11 +99,12 @@ const styles = StyleSheet.create({
   headerContainer: {
     width: "110%",
     alignItems: "center",
+    marginTop: 20,
   },
   bread: {
     width: "110%",
-    height: 360, 
-    resizeMode: "cover", 
+    height: 410,
+    resizeMode: "cover",
   },
   docsContainer: {
     width: "102%",
@@ -52,17 +113,21 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 16,
-    lineHeight: 15,
-    color: "#333",
-    marginBottom: 15,
+    color: "#4A4E4D",
+    fontFamily: "Nunito",
+    fontWeight: "700"
   },
-  bulletContainer: {
-    marginTop: 10,
+  forward: {
+    width: 56,
+    height: 54, 
+    resizeMode: "contain",
   },
-  bullet: {
-    fontSize: 16,
-    lineHeight: 22,
-    marginBottom: 8,
+  btnTouchable: {
+    position: "absolute",
+    top: 35, 
+    right: 10, 
+    zIndex: 10, 
+    padding: 10, 
   },
 });
 

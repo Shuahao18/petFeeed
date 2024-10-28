@@ -24,6 +24,7 @@ export default function App() {
   // Load the LazyDog font
   let [fontsLoaded] = useFonts({
     'LazyDog': require('./assets/fonts/Lazydog.otf'),
+    'Nunito': require('./assets/fonts/NunitoSans.ttf'),
   });
 
   // Show loading spinner while fonts are loading
