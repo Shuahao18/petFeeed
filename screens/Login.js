@@ -6,12 +6,14 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native"; 
 import colors from "../constants/colors";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigation = useNavigation(); 
 
   return (
     <View
@@ -22,20 +24,11 @@ const Login = () => {
         backgroundColor: colors.bg,
       }}
     >
-      <View style= {{ 
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end',
-        padding: 0,
-        right: -40,
-        top: 40
-       }}>
-
-      <Text style={{ fontSize: 24,  color: colors.text,
-      }}>Hello,</Text>
-
-      <Text style={{ fontSize: 24, color: colors.text, marginBottom: 20  
-      }}>Welcome To Pet Feeder</Text>
-
+      <View style={{ justifyContent: 'flex-end', alignItems: 'flex-end', padding: 0, right: -40, top: 40 }}>
+        <Text style={{ fontSize: 24, color: colors.text, fontWeight: '900' }}>Hello,</Text>
+        <Text style={{ fontSize: 24, color: colors.text, marginBottom: 20, fontWeight: '900' }}>
+          Welcome To Pet Feeder
+        </Text>
       </View>
 
       <View
@@ -44,7 +37,7 @@ const Login = () => {
           width: '100%',
           justifyContent: "center",
           alignItems: "center",
-          bottom: 140,
+          bottom: 130,
         }}
       >
         <Image
@@ -74,9 +67,9 @@ const Login = () => {
             height: 67,
             width: "100%",
             borderRadius: 25,
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.bg,
             borderWidth: 2,
-            borderColor: colors.primary,
+            borderColor: colors.punkan,
             paddingHorizontal: 10,
             marginBottom: 20,
           }}
@@ -88,8 +81,6 @@ const Login = () => {
               height: 34,
               marginRight: 30,
               left: 10,
-             
-          
             }}
           />
           <TextInput
@@ -97,13 +88,11 @@ const Login = () => {
             onChangeText={(text) => setEmail(text)}
             style={{
               flex: 1,
-              color: colors.primary,
+              color: colors.punkan,
               fontSize: 20,
-              
             }}
             placeholder="Email"
-            placeholderTextColor="#672525"
-            
+            placeholderTextColor="#EB9477"
           />
         </View>
 
@@ -115,30 +104,28 @@ const Login = () => {
             height: 67,
             width: "100%",
             borderRadius: 25,
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.bg,
             borderWidth: 2,
-            borderColor: colors.primary,
+            borderColor: colors.punkan,
             paddingHorizontal: 10,
             marginBottom: 20,
           }}
         >
-          {/* Eye icon on the left side for password visibility */}
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Image
               source={
                 showPassword
-                  ? require("../assets/lock.png") // Icon when password is visible
-                  : require("../assets/lock.png") // Icon when password is hidden
+                  ? require("../assets/lock.png") 
+                  : require("../assets/lock.png") 
               }
               style={{
                 width: 34,
                 height: 34,
-                marginLeft: 10, // Adjust to align the icon properly
+                marginLeft: 10,
               }}
             />
           </TouchableOpacity>
 
-          {/* Password Text Input */}
           <TextInput
             value={password}
             onChangeText={(text) => setPassword(text)}
@@ -146,37 +133,45 @@ const Login = () => {
               flex: 1,
               color: "#000000",
               fontSize: 20,
-              marginLeft: 20, // To provide space between the image and the text
+              marginLeft: 20,
             }}
             placeholder="Password"
-            placeholderTextColor="#672525"
-            secureTextEntry={!showPassword} // Toggle password visibility
+            placeholderTextColor="#EB9477"
+            secureTextEntry={!showPassword} 
           />
         </View>
 
         {/* Login Button */}
         <TouchableOpacity
           style={{
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.punkan,
             justifyContent: "center",
             alignItems: "center",
             borderRadius: 25,
-            borderWidth: 2,
-            borderColor: colors.primary,
             width: "100%",
             height: 90,
+            marginBottom: 10,
           }}
-          onPress={() => alert("Button Pressed")}
+          onPress={() => navigation.navigate('home')}
         >
-          <Text style={{ color: "white", fontSize: 20, color: colors.text }}>Login</Text>
+          <Text style={{ color: "white", fontSize: 20, fontWeight: '900', color: colors.bg }}>
+            Log In
+          </Text>
         </TouchableOpacity>
-        
-        <Text style={{ color: "white", fontSize: 20, color: colors.primary, left: -30 
-        }}>First time here?</Text>
 
-        <Text style={{ color: "white", fontSize: 20, color: colors.text, top: -23, left: 65 
-        }}>Register</Text>
-        
+        <Text style={{ color: "white", fontSize: 20, fontWeight: '900', color: colors.text, left: -30 }}>
+          First time here?
+        </Text>
+
+        {/* Register Button (wrap in TouchableOpacity) */}
+        <TouchableOpacity
+          style={{ position: 'absolute', bottom: -1, right: 61 }} 
+          onPress={() => navigation.navigate('signup')} 
+        >
+          <Text style={{ color: "white", fontSize: 20, fontWeight: '900', color: colors.punkan }}>
+            Register
+          </Text>
+        </TouchableOpacity>
 
       </View>
     </View>

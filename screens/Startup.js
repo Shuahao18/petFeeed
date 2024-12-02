@@ -5,7 +5,7 @@ import { auth } from "../firebase";
 import colors from "../constants/colors";
 
 const Startup = () => {
-  const navigation = useNavigation(); // Correctly access the navigation object
+  const navigation = useNavigation(); 
 
   return (
     <View style={{ flex: 1, color: "#EEEEEE" }}>

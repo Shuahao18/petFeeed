@@ -7,16 +7,8 @@ import Landing from "./screens/Landing";
 import Login from "./screens/Login";
 import Home from "./screens/Home";
 import About from "./screens/About"
-import AboutScreen from "./screens/About";
-import BeaconScreen from "./screens/BeaconScreen";
+import BanterLoader from "./components/BanterLoader";
 import Startup from "./screens/Startup";
-import TeamScreen from "./screens/TeamScreen";
-import SecScreen from "./screens/SecScreen";
-import ShoppyScreen from "./screens/ShoppyScreen";
-import DocScreen from "./screens/DocScreen";
-import ViewScreen from "./screens/ViewScreen";
-import InfoScreen from "./screens/InfoScreen";
-import LaunchScreen from "./screens/LaunchScreen";
 import Signup from "./screens/Signup";
 import { appLoading } from "expo";
 
@@ -41,14 +33,20 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="about" component={About}/>
-          <Stack.Screen name="home" component={Home} />
-          <Stack.Screen name="signup" component={Signup} />
-          <Stack.Screen name="login" component={Login} />
+      <Stack.Screen name="about" component={About}/>
+
+      <Stack.Screen name="landing" component={Landing} />
+
+
+      <Stack.Screen name="home" component={Home} />
+
+      <Stack.Screen name="signup" component={Signup} />
+
+      <Stack.Screen name="login" component={Login} />
+      <Stack.Screen name="banter" component={BanterLoader} />
+
     
-          <Stack.Screen name="start" component={Startup} />
     
-          <Stack.Screen name="landing" component={Landing} />
         {/* <Stack.Screen name="About" component={AboutScreen} />
         <Stack.Screen name="Beacon" component={BeaconScreen} />
         <Stack.Screen name="Team" component={TeamScreen} />

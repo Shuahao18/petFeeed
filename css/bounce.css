@@ -1,0 +1,15 @@
+
+/* Social Links Tooltip */
+.social-link .tooltip{
+    visibility: hidden;
+
+}
+
+.social-link:hover .tooltip{
+    visibility: visible;
+}
+
+.background-gradient{
+    background: rgb(42,40,40);
+    background: linear-gradient(0deg, rgba(42,40,40,0.8015581232492998) 0%, rgba(138,127,127,1) 7%, rgba(140,130,130,0.8883928571428571) 14%, rgba(148,142,142,0.38699229691876746) 25%, rgba(200,191,191,0.48503151260504207) 36%);
+}

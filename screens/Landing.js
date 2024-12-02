@@ -62,8 +62,8 @@ import colors from "../constants/colors";
   <TouchableOpacity
     style={{backgroundColor: colors.secondary , flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderRadius:25, width: '90%', height: 80,paddingHorizontal: 10, borderWidth: 2, borderColor: colors.primary
     }}
-    onPress={() => alert('Button Pressed')}
-  >
+    onPress={() => navigation.navigate('login')}
+    >
           <Image
             source={require("../assets/forward.png")}
             style={{
@@ -76,14 +76,7 @@ import colors from "../constants/colors";
   </TouchableOpacity>
 
 
-  {/* <TouchableOpacity
-    style={{backgroundColor: '#9a7e6f', flexDirection: 'row', justifyContent: 'center', alignItems: 'center',borderRadius: 25, width: '90%', height: 80, marginTop: 20,paddingHorizontal: 10, 
-    }}
-    onPress={() => alert('Button Pressed')}
-  >
-   
-    <Text style={{ color: 'white', fontSize: 24 }}>Register</Text>
-  </TouchableOpacity> */}
+  
 </View>
         </View>
 
