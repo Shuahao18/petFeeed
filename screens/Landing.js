@@ -1,14 +1,4 @@
-import {
-  ImageBackground,
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Animated,
-  Easing,
-  Image,
+import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Animated, Easing, Image,
 } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";

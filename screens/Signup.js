@@ -1,12 +1,7 @@
-import {
-  Image,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+import {Image,Text,TextInput,TouchableOpacity, View,
 } from "react-native";
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native"; // Import useNavigation
+import { useNavigation } from "@react-navigation/native"; 
 import colors from "../constants/colors";
 
 const Signup = () => {

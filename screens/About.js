@@ -1,10 +1,4 @@
-import {
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-  Animated,
-  Image,
+import { ScrollView, Text, TouchableOpacity, View, Animated, Image,
 } from "react-native";
 import React, {useEffect, useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -21,7 +15,6 @@ const About = () => {
   const navigation = useNavigation();
   const bounceAnim = useRef(new Animated.Value(0)).current; 
   useEffect(() => {
-    // Start the bounce animation
     Animated.loop(
       Animated.sequence([
         Animated.timing(bounceAnim, {
