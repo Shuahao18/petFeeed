@@ -18,16 +18,15 @@ const Home = () => {
   const bounceAnim = useRef(new Animated.Value(0)).current; 
 
   useEffect(() => {
-    // Start the bounce animation
     Animated.loop(
       Animated.sequence([
         Animated.timing(bounceAnim, {
-          toValue: -10, // Move up by 10 units
+          toValue: -10, 
           duration: 500,
           useNativeDriver: true,
         }),
         Animated.timing(bounceAnim, {
-          toValue: 0, // Return to original position
+          toValue: 0, 
           duration: 500,
           useNativeDriver: true,
         }),
@@ -48,13 +47,13 @@ const Home = () => {
         backgroundColor: colors.bg,
       }}
     >
-      {/* Bouncing pawpaw image */}
+
       <Animated.Image
         source={require("../assets/pawpaw.png")}
         style={{
           alignSelf: "flex-end",
           marginRight: 20,
-          transform: [{ translateY: bounceAnim }], // Apply bounce animation
+          transform: [{ translateY: bounceAnim }], 
         }}
       />
 

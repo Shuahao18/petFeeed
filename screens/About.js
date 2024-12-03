@@ -25,12 +25,12 @@ const About = () => {
     Animated.loop(
       Animated.sequence([
         Animated.timing(bounceAnim, {
-          toValue: -10, // Move up by 10 units
+          toValue: -10, 
           duration: 500,
           useNativeDriver: true,
         }),
         Animated.timing(bounceAnim, {
-          toValue: 0, // Return to original position
+          toValue: 0,
           duration: 500,
           useNativeDriver: true,
         }),
@@ -71,10 +71,10 @@ const About = () => {
         style={{
           alignSelf: "flex-end",
           marginRight: 20,
-          transform: [{ translateY: bounceAnim }], // Apply bounce animation
+          transform: [{ translateY: bounceAnim }], 
         }}
       />
-          <Text style={{ fontSize: 65, color: colors.text, top: -80 }}>About</Text>
+          <Text style={{ fontSize: 65, fontWeight: 900, color: colors.text, top: -80 }}>About</Text>
         </View>
 
         {/* Description Section */}
@@ -318,7 +318,7 @@ const About = () => {
                 position: "absolute",
                 zIndex: 3,
               }}
-              onPress={() => toggleVisibilityRight(translateAnimRight, isVisibleRight, setIsVisibleRight)} // Use the imported animation function
+              onPress={() => toggleVisibilityRight(translateAnimRight, isVisibleRight, setIsVisibleRight)} 
             >
               <Image
                 source={require("../assets/kris.png")}
@@ -382,7 +382,7 @@ const About = () => {
                 position: "absolute",
                 zIndex: 3,
               }}
-              onPress={() => toggleVisibility(translateAnim, isVisible, setIsVisible)} // Use the imported animation function
+              onPress={() => toggleVisibility(translateAnim, isVisible, setIsVisible)} 
             >
               <Image
                 source={require("../assets/kris.png")}
@@ -635,29 +635,98 @@ const About = () => {
           height: 100,
         }}
       >
-        <Image
-          source={require("../assets/aboutBtn.png")}
-          style={{
-            width: 60,
-            height: 40,
-          }}
-        />
+        <View
+            style={{
+              flexDirection: "col",
+              justifyContent: "center",
+              width: 50,
+              height: 60,
+            }}
+          >
+            <Image
+              source={require("../assets/aboutBtn.png")}
+              style={{
+                alignSelf: "center",
+                justifySelf: "center",
+                top: 2,
+                width: 40,
+                height: 40,
+              }}
+            />
+            <Text
+              style={{
+                color: colors.punkan,
+                fontSize: 12,
+                fontWeight: "900",
+                marginTop: 5,
+                left: 3,
+              }}
+            >
+              About Us
+            </Text>
+          </View>
 
-        <Image
-          source={require("../assets/homebtn.png")}
-          style={{
-            width: 40,
-            height: 40,
-          }}
-        />
+          <View
+            style={{
+              flexDirection: "col",
+              justifyContent: "center",
+              width: 50,
+              height: 60,
+            }}
+          >
+            <Image
+              source={require("../assets/homebtn.png")}
+              style={{
+                alignSelf: "center",
+                justifySelf: "center",
+                top: 2,
+                width: 40,
+                height: 40,
+              }}
+            />
+            <Text
+              style={{
+                color: colors.text,
+                fontSize: 12,
+                fontWeight: "900",
+                marginTop: 5,
+                left: 10,
+              }}
+            >
+              Home
+            </Text>
+          </View>
 
-        <Image
-          source={require("../assets/Logout.png")}
-          style={{
-            width: 40,
-            height: 40,
-          }}
-        />
+          <View
+            style={{
+              flexDirection: "col",
+              justifyContent: "center",
+              width: 50,
+              height: 60,
+            }}
+          >
+            <Image
+              source={require("../assets/Logout.png")}
+              style={{
+                alignSelf: "center",
+                justifySelf: "center",
+                top: 2,
+                width: 40,
+                height: 40,
+              }}
+            />
+            <Text
+              style={{
+                color: colors.punkan,
+                fontSize: 12,
+                fontWeight: "900",
+                marginTop: 5,
+                left: 3,
+              }}
+            >
+              Log Out
+            </Text>
+          </View>
       </View>
     </ScrollView>
   );
