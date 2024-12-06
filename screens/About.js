@@ -503,7 +503,7 @@ const About = () => {
                 position: "absolute",
                 zIndex: 3,
               }}
-              onPress={() => toggleVisibility(translateAnim, isVisible, setIsVisible)} // Use the imported animation function
+              onPress={() => toggleVisibility(translateAnim, isVisible, setIsVisible)} 
             >
               <Image
                 source={require("../assets/kris.png")}
@@ -566,7 +566,7 @@ const About = () => {
                 position: "absolute",
                 zIndex: 3,
               }}
-              onPress={() => toggleVisibilityRight(translateAnimRight, isVisibleRight, setIsVisibleRight)} // Use the imported animation function
+              onPress={() => toggleVisibilityRight(translateAnimRight, isVisibleRight, setIsVisibleRight)} 
             >
               <Image
                 source={require("../assets/kris.png")}
@@ -699,7 +699,7 @@ const About = () => {
           width: 50,
           height: 60,
         }}
-        onPress={''} // Call handleLogout on press
+        onPress={''} 
       >
         <Image
           source={require("../assets/Logout.png")}
