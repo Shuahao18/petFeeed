@@ -1,6 +1,6 @@
 import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Animated, Image } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigation } from "@react-navigation/native"; // for navigation
+import { useNavigation } from "@react-navigation/native";
 import colors from "../constants/colors";
 
 const Home = () => {
@@ -24,14 +24,12 @@ const Home = () => {
     ).start();
   }, [bounceAnim]);
 
-  // Function to navigate to About Us screen
   const navigateToAbout = () => {
-    navigation.navigate('About'); // Replace 'About' with your screen name
+    navigation.navigate('About'); 
   };
 
-  // Function to navigate to Home screen (you can navigate to any screen you'd like)
   const navigateToHome = () => {
-    navigation.navigate('Home'); // Replace 'Home' with your screen name
+    navigation.navigate('Home'); 
   };
 
   return (
