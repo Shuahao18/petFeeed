@@ -22,7 +22,6 @@ export default function App() {
     SixtyFour: require("./assets/fonts/Sixtyfour.ttf")
   });
 
-  // Show loading spinner while fonts are loading
   if (!fontsLoaded) {
     return (
       <View style={styles.loadingContainer}>
@@ -36,10 +35,11 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="banter" component={BanterLoader} />
       <Stack.Screen name="landing" component={Landing} />
-      <Stack.Screen name="about" component={About}/>
-      <Stack.Screen name="home" component={Home} />
       <Stack.Screen name="signup" component={Signup} />
       <Stack.Screen name="login" component={Login} />
+      <Stack.Screen name="home" component={Home} />
+      <Stack.Screen name="about" component={About}/>
+
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

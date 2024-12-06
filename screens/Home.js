@@ -1,7 +1,6 @@
-import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Animated, Image,
-} from "react-native";
+import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Animated, Image } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native"; // for navigation
 import colors from "../constants/colors";
 
 const Home = () => {
@@ -25,6 +24,16 @@ const Home = () => {
     ).start();
   }, [bounceAnim]);
 
+  // Function to navigate to About Us screen
+  const navigateToAbout = () => {
+    navigation.navigate('About'); // Replace 'About' with your screen name
+  };
+
+  // Function to navigate to Home screen (you can navigate to any screen you'd like)
+  const navigateToHome = () => {
+    navigation.navigate('Home'); // Replace 'Home' with your screen name
+  };
+
   return (
     <View
       style={{
@@ -44,7 +53,7 @@ const Home = () => {
         style={{
           alignSelf: "flex-end",
           marginRight: 20,
-          transform: [{ translateY: bounceAnim }], 
+          transform: [{ translateY: bounceAnim }],
         }}
       />
 
@@ -101,9 +110,7 @@ const Home = () => {
           }}
           onPress={() => alert("Button Pressed")}
         >
-          <Text
-            style={{ color: colors.bg, fontSize: 24, fontWeight: "900" }}
-          >
+          <Text style={{ color: colors.bg, fontSize: 24, fontWeight: "900" }}>
             FEED
           </Text>
         </TouchableOpacity>
@@ -122,9 +129,7 @@ const Home = () => {
           }}
           onPress={() => alert("Button Pressed")}
         >
-          <Text
-            style={{ color: colors.bg, fontSize: 24, fontWeight: "900" }}
-          >
+          <Text style={{ color: colors.bg, fontSize: 24, fontWeight: "900" }}>
             STOP
           </Text>
         </TouchableOpacity>
@@ -140,14 +145,16 @@ const Home = () => {
             bottom: -20,
           }}
         >
-          <View
+          {/* About Us Button */}
+          <TouchableOpacity
             style={{
               flexDirection: "col",
               justifyContent: "center",
               width: 50,
               height: 60,
             }}
-          >
+            onPress={() => navigation.navigate('about')}
+            >
             <Image
               source={require("../assets/aboutBtn.png")}
               style={{
@@ -169,16 +176,18 @@ const Home = () => {
             >
               About Us
             </Text>
-          </View>
+          </TouchableOpacity>
 
-          <View
+          {/* Home Button */}
+          <TouchableOpacity
             style={{
               flexDirection: "col",
               justifyContent: "center",
               width: 50,
               height: 60,
             }}
-          >
+            onPress={() => navigation.navigate('home')}
+            >
             <Image
               source={require("../assets/homebtn.png")}
               style={{
@@ -200,7 +209,7 @@ const Home = () => {
             >
               Home
             </Text>
-          </View>
+          </TouchableOpacity>
 
           <View
             style={{
